@@ -45,7 +45,7 @@ const updateOptionOrder = {
 const ListOptions = ({ optionSetUid }) => {
   const [optionSet, setOptionSet] = useState({});
   const [sortInstructions, setSortInstructions] = useState({
-    column: "sortOrder",
+    column: "default",
     direction: true,
   });
 
@@ -74,8 +74,6 @@ const ListOptions = ({ optionSetUid }) => {
   };
 
   const moveRow = useCallback((dragIndex, hoverIndex) => {
-    let startTime = performance.now();
-    let middleTime;
     setOptionSet((prev) => {
       const tmp = update(prev, {
         options: {
@@ -85,21 +83,8 @@ const ListOptions = ({ optionSetUid }) => {
           ],
         },
       });
-      middleTime = performance.now();
-      console.log(tmp);
       return tmp;
     });
-    let endTime = performance.now();
-    console.log(
-      `Call to move from ${dragIndex} to ${hoverIndex} took ${
-        (middleTime - startTime) / 1000
-      } seconds`
-    );
-    console.log(
-      `Call to move from ${dragIndex} to ${hoverIndex} took ${
-        (endTime - middleTime) / 1000
-      } seconds`
-    );
   }, []);
 
   useEffect(() => {
@@ -150,7 +135,7 @@ const ListOptions = ({ optionSetUid }) => {
           <CircularLoader />
         </Center>
       ) : (
-        <DataTable scrollHeight="500px">
+        <DataTable>
           <DataTableHead>
             <DataTableRow>
               <DataTableColumnHeader />

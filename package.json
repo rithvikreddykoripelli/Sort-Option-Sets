@@ -2,7 +2,7 @@
   "name": "sort-option-sets",
   "version": "1.0.0",
   "description": "",
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "build": "d2-app-scripts build",

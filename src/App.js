@@ -4,6 +4,7 @@ import i18n from "@dhis2/d2-i18n";
 import classes from "./App.module.css";
 
 import {
+  Center,
   CircularLoader,
   SingleSelectField,
   SingleSelectOption,
@@ -26,7 +27,11 @@ const MyApp = () => {
 
   return (
     <div className={classes.container}>
-      {loading && <CircularLoader />}
+      {loading && (
+        <Center>
+          <CircularLoader />
+        </Center>
+      )}
       {error && <span>{`ERROR: ${error.message}`}</span>}
       {data && (
         <SingleSelectField
@@ -50,7 +55,7 @@ const MyApp = () => {
         </SingleSelectField>
       )}
 
-      <ListOptions optionSetUid={selectedOptionSet} />
+      {selectedOptionSet && <ListOptions optionSetUid={selectedOptionSet} />}
     </div>
   );
 };
